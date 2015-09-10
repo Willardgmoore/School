@@ -26,7 +26,7 @@ class TeachersController < ApplicationController
 
   def update
   	@teacher = Teacher.find(params[:id])
-  	if @teacher.update(teachers_params)
+  	if @teacher.update(teacher_params)
   		redirect_to teachers_path
   	else
   		render :edit

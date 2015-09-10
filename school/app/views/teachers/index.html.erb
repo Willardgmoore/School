@@ -1,2 +1,10 @@
 <h1>Teachers#index</h1>
-<p>Find me in app/views/teachers/index.html.erb</p>
+<h1> Teachers </h1>
+  <%= link_to 'New Teacher', new_teacher_path %> 
+<% @teachers.each do |teacher| %>
+  <h2><%= teacher.first_name %></h2>
+  <h3><%= teacher.last_name %></h3>
+  <%= link_to 'Show Teacher', teacher_path(teacher)%>
+  <%= link_to 'Edit Teacher', edit_teacher_path(teacher) %>
+  <%= link_to 'Delete Teacher', teacher, method: :delete %>
+<% end %>
