@@ -1,2 +1,7 @@
-<h1>Courses#show</h1>
-<p>Find me in app/views/courses/show.html.erb</p>
+<h1>Course Details</h1>
+<h3><%= @course.title %></h3>
+<%= link_to 'Back', courses_path %>
+<%= link_to 'Edit', edit_course_path(@course)  %>
+<%= link_to 'Delete', @course, method: :delete %>
+<p>Add link to Assignments</p>
+<p>Add link to Quizzes</p>
