@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
- 
+
   def index
   	@courses = Course.all
   end
@@ -32,6 +32,12 @@ class CoursesController < ApplicationController
   	else
   		render :edit
   	end
+  end
+
+  def destroy
+    @course = Course.find(params[:id])
+    @course.destroy
+    redirect_to courses_path
   end
 
 private

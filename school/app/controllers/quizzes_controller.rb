@@ -33,6 +33,12 @@ class QuizzesController < ApplicationController
   	end
   end
 
+  def destroy
+    @quiz = Quiz.find(params[:id])
+    @quiz.destroy
+    redirect_to course_quizzes_path
+  end
+
 private
 
 	def quiz_params
