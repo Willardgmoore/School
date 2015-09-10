@@ -3,5 +3,5 @@
 <%= link_to 'Back', courses_path %>
 <%= link_to 'Edit', edit_course_path(@course)  %>
 <%= link_to 'Delete', @course, method: :delete %>
-<p>Add link to Assignments</p>
-<p>Add link to Quizzes</p>
+<%= link_to 'Quizzes', course_quizzes_path(@course) %>
+<%= link_to 'Assignments', course_assignments_path(@course) %>
