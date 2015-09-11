@@ -1,6 +1,6 @@
 class QuizzesController < ApplicationController
   def index
-  	@quizzes = Quiz.all
+  	@quizzes = Quiz.where(course_id: params[:course_id])
   end
 
   def show
@@ -8,13 +8,13 @@ class QuizzesController < ApplicationController
   end
 
   def new
-  	@quiz = Quiz.new
+  	@quiz = Quiz.new(course_id: params[:course_id])
   end
 
   def create
   	@quiz = Quiz.new(quiz_params)
   	if @quiz.save
-  		redirect_to course_quizzes_path
+  		redirect_to course_quizzes_path(params[:course_id])
   	else
   		render :new
   	end
@@ -27,7 +27,7 @@ class QuizzesController < ApplicationController
   def update
   	@quiz = Quiz.find(params[:id])
   	if @quiz.update(quiz_params)
-  		redirect_to course_quizzes_path
+  		redirect_to course_quizzes_path(params[:course_id])
   	else
   		render :edit
   	end
@@ -36,13 +36,13 @@ class QuizzesController < ApplicationController
   def destroy
     @quiz = Quiz.find(params[:id])
     @quiz.destroy
-    redirect_to course_quizzes_path
+    redirect_to course_quizzes_path(params[:course_id])
   end
 
 private
 
 	def quiz_params
-		params.require(:quiz).permit(:title)
+		params.require(:quiz).permit(:title, :course_id)
 	end
 
 end

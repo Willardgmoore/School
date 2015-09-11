@@ -1,0 +1,16 @@
+<% if params[:action] == 'new'
+     go_to = course_assignments_path(params[:course_id])
+  else
+    go_to = course_assignment_path(params[:course_id], params[:id])
+  end %>
+
+
+
+<%= form_for @assignment, url: go_to do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.hidden_field :course_id, value: params[:course_id] %>
+
+  <%= f.submit 'Submit' %>
+<% end %>

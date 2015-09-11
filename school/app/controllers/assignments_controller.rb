@@ -1,6 +1,6 @@
 class AssignmentsController < ApplicationController
   def index
-  	@assignments = Assignment.all
+  	@assignments = Assignment.where(course_id: params[:course_id])
   end
 
   def show
@@ -8,13 +8,13 @@ class AssignmentsController < ApplicationController
   end
 
   def new
-  	@assignment = Assignment.new
+  	@assignment = Assignment.new(course_id: params[:course_id])
   end
 
   def create
   	@assignment = Assignment.new(assignment_params)
   	if @assignment.save
-  		redirect_to course_assignments_path
+  		redirect_to course_assignments_path(params[:course_id])
   	else
   		render :new
   	end
@@ -27,7 +27,7 @@ class AssignmentsController < ApplicationController
   def update
   	@assignment = Assignment.find(params[:id])
   	if @assignment.update(assignment_params)
-  		redirect_to course_assignments_path
+  		redirect_to course_assignments_path(params[:course_id])
   	else
   		render :edit
   	end
@@ -36,13 +36,13 @@ class AssignmentsController < ApplicationController
   def destroy
     @assignment = Assignment.find(params[:id])
     @assignment.destroy
-    redirect_to course_assignments_path
+    redirect_to course_assignments_path(params[:course_id])
   end
 
 private
 
 	def assignment_params
-		params.require(:assignment).permit(:title)
+		params.require(:assignment).permit(:title, :course_id)
 	end
 
 end

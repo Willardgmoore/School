@@ -1,7 +1,11 @@
 <h1>Quizzes</h1>
 <%= link_to 'New Quiz', new_course_quiz_path %>
+<%= link_to 'Back', course_path(params[:course_id]) %>
+
 
 <% @quizzes.each do |quiz| %>
+
   <h3><%= quiz.title %></h3>
-  <%= link_to 'Details', course_quiz_path(quiz.id, quiz) %>
+  <%= link_to 'Details', course_quiz_path(quiz.course_id, quiz) %>
+
 <% end %>
